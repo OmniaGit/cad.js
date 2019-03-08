@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Layout and common templates -->
+    <template id="main_view">
+        <link rel="stylesheet" href="/3dCad/static/js/stylesheets/base.scss">
+        <head>
+            <t t-call-assets="web.assets_common" />
+            <t t-call-assets="web.assets_common" />
+            
+            <t t-call-assets="web.assets_frontend" />
+            <t t-call-assets="web.assets_frontend" />
+            
+            <t t-call-assets="web.assets_backend" />
+            <t t-call-assets="web.assets_backend" />
+            
+            <t t-call-assets="web_editor.summernote" />
+            <t t-call-assets="web_editor.summernote" />
+            
+            <t t-call-assets="web_editor.assets_editor" />
+            <t t-call-assets="web_editor.assets_editor" />
+        </head>
+        <t t-call="web.layout">
+
+            <h1 style="padding: 5px; margin-left:30px;">Cad View 3d</h1>
+            <form style="display: -webkit-inline-box;margin-left: 35px;">
+            <div id="3dCad_main"/>
+            </form>
+        </t>
+    </template>
+    </odoo>

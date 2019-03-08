@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="3dview assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/3dCad/static/js/libs/three.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/OrbitControls.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/EventsControls.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/STLLoader.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/main.js"></script>
+        </xpath>
+    </template>
+</odoo>
