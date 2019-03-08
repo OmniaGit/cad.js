@@ -15,8 +15,9 @@
                 """,
 
     'depends': ['plm'],
-    'data': ['views/templates.xml',
-             'views/assets.xml',],
+    'data': ['views/assets.xml',
+             'views/templates.xml'],   
+    'qweb': ['static/xml/templates.xml'],
     'application': False,
     'installable': True,
     'auto_install': True,

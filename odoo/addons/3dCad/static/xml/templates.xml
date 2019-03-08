@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template t-name="threejs_main_view_widget" t-att-style="'display: table'">
+        <div id="main_3d"/>
+    </template> 
+</odoo>

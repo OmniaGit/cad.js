@@ -5,7 +5,7 @@ import  base64
 
 class Main(http.Controller):
 
-    @http.route('/3dCad/render/<product_id>', methods=['GET'], auth='user', website=False)
+    @http.route('/3dCad/render/<product_id>', methods=['GET'], auth='user', website=True)
     def render(self, product_id, **kwargs):
-        return request.render("3dCad.main_view", {'main_product_product_id': product_id})
+        return request.render("3dCad.threejs_main_view", {'main_product_product_id': product_id})
 #     

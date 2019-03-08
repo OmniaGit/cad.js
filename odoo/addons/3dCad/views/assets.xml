@@ -9,4 +9,13 @@
             <script type="text/javascript" src="/3dCad/static/js/main.js"></script>
         </xpath>
     </template>
+    <template id="assets_common" name="3dview assets common" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/3dCad/static/js/libs/three.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/OrbitControls.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/EventsControls.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/libs/STLLoader.js"></script>
+            <script type="text/javascript" src="/3dCad/static/js/main.js"></script>
+        </xpath>
+    </template>
 </odoo>
