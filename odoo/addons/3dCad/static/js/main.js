@@ -86,7 +86,10 @@ var createTestFour = function(divElement){
 
         // viewcube
         var viewcubeElement = createDiv(divElement, 'viewcube');
-        $(viewcubeElement).css({top: -150,  position:'relative'});
+        $(viewcubeElement).css({top: -150,
+                                position:'relative',
+                                height: 150,
+                                width: 150});
         var viewcube = domElement.viewcube = new FOUR.Viewcube({
             width: 150,
             height: 150,
