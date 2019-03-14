@@ -5521,6 +5521,10 @@ FOUR.Viewcube = (function () {
             self.renderContinuous = true;
             tween.start();
             self.render();
+            self.dispatchEvent({
+                type: FOUR.EVENT.CAMERA_CHANGE,
+                direction: targetEuler,
+                });
         });
     };
 
