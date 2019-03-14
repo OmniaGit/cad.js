@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="threejs_main_view">
-        <link rel="stylesheet" href="/3dCad/static/js/stylesheets/base.scss"/>
+        
         <head>
 
         </head>
@@ -18,7 +18,8 @@
 
             </script>
             <h1>Three Js on Odoo</h1>
-            <div id="main_3d"/>
+            <div id="main_3d"  style="width: 600px; height: 400px"/>
         </t>
     </template>
+
 </odoo>

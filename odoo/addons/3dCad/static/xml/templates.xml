@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template t-name="threejs_main_view_widget" t-att-style="'display: table'">
+    <template t-name="threejs_main_view_widget" t-att-style="'display: table;width: 600px; height: 400px'">
         <div id="main_3d"/>
-    </template> 
+    </template>
+        <div t-name="compass">
+        <div id="compass-cube" className="cube">
+            <div className="cube-face cube-face-front">
+                <span className="cube-face-label">Front</span>
+                <div className="cube-button cube-face-button" data-x="0" data-y="0" data-z="0"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="front-top" data-x="45" data-y="0" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="front-right" data-x="0" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="front-bottom" data-x="-45" data-y="0" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="front-left" data-x="0" data-y="-45" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="front-top-right" data-x="45" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="front-bottom-right" data-x="-45" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="front-bottom-left" data-x="-45" data-y="-45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="front-top-left" data-x="45" data-y="-45" data-z="0" data-order="YXZ"></div>
+            </div>
+            <div className="cube-face cube-face-back">
+                <span className="cube-face-label">Back</span>
+                <div className="cube-button cube-face-button" data-x="0" data-y="180" data-z="0"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="back-top" data-x="45" data-y="180" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="back-left" data-x="0" data-y="225" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="back-bottom" data-x="-45" data-y="180" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="back-right" data-x="0" data-y="135" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="back-top-left" data-x="45" data-y="225" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="back-bottom-left" data-x="-45" data-y="225" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="back-bottom-right" data-x="-45" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="back-top-right" data-x="45" data-y="135" data-z="0" data-order="YXZ"></div>
+            </div>
+            <div className="cube-face cube-face-right">
+                <span className="cube-face-label">Right</span>
+                <div className="cube-button cube-face-button" data-x="0" data-y="90" data-z="0"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="top-right" data-x="45" data-y="90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="back-right" data-x="0" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="bottom-right" data-x="-45" data-y="90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="front-right" data-x="0" data-y="45" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="back-top-right" data-x="45" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="back-bottom-right" data-x="-45" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="front-bottom-right" data-x="-45" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="front-top-right" data-x="45" data-y="45" data-z="0" data-order="YXZ"></div>
+            </div>
+            <div className="cube-face cube-face-left">
+                <span className="cube-face-label">Left</span>
+                <div className="cube-button cube-face-button" data-x="0" data-y="-90" data-z="0"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="top-left" data-x="45" data-y="-90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="front-left" data-x="0" data-y="-45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="bottom-left" data-x="-45" data-y="-90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="back-left" data-x="0" data-y="-135" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="front-top-left" data-x="45" data-y="-45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="front-bottom-left" data-x="-45" data-y="-45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="back-bottom-left" data-x="-45" data-y="-135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="back-top-left" data-x="45" data-y="-135" data-z="0" data-order="YXZ"></div>
+            </div>
+            <div className="cube-face cube-face-top">
+                <span className="cube-face-label">Top</span>
+                <div className="cube-button cube-face-button" data-x="90" data-y="0" data-z="0" data-up="0,0,1"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="back-top" data-x="45" data-y="180" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="top-right" data-x="45" data-y="90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="front-top" data-x="45" data-y="0" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="top-left" data-x="45" data-y="-90" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="back-top-right" data-x="45" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="front-top-right" data-x="45" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="front-top-left" data-x="45" data-y="-45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="back-top-left" data-x="45" data-y="-135" data-z="0" data-order="YXZ"></div>
+            </div>
+            <div className="cube-face cube-face-bottom">
+                <span className="cube-face-label">Bottom</span>
+                <div className="cube-button cube-face-button" data-x="-90" data-y="0" data-z="0" data-up="0,0,-1"></div>
+
+                <div className="cube-face-edge cube-face-edge-top cube-button cube-button-face-edge" data-group="front-bottom" data-x="-45" data-y="0" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-right cube-button cube-button-face-edge" data-group="bottom-right" data-x="-45" data-y="90" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-bottom cube-button cube-button-face-edge" data-group="back-bottom" data-x="-45" data-y="180" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-edge cube-face-edge-left cube-button cube-button-face-edge" data-group="bottom-left" data-x="-45" data-y="-90" data-z="0" data-order="YXZ"></div>
+
+                <div className="cube-face-corner cube-face-corner-top-right cube-button cube-button-face-corner" data-group="front-bottom-right" data-x="-45" data-y="45" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-right cube-button cube-button-face-corner" data-group="back-bottom-right" data-x="-45" data-y="135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-bottom-left cube-button cube-button-face-corner" data-group="back-bottom-left" data-x="-45" data-y="-135" data-z="0" data-order="YXZ"></div>
+                <div className="cube-face-corner cube-face-corner-top-left cube-button cube-button-face-corner" data-group="front-bottom-left" data-x="-45" data-y="-45" data-z="0" data-order="YXZ"></div>
+            </div>
+        </div>
+    </div> 
 </odoo>
