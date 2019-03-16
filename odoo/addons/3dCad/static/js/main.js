@@ -9,7 +9,7 @@ var Class = require('web.Class');
 
 //https://stackoverflow.com/questions/31021252/orientation-cube-in-three-js
 //https://github.com/mattdesl/three-orbit-controls/blob/master/test.js
-https://github.com/elmarquez/four 
+//https://github.com/elmarquez/four 
 
 var createDiv = function(parent, id){
     var out = document.createElement("div");    
@@ -49,22 +49,45 @@ var createTestFour = function(divElement){
         scene.add(lights[2]);
 
         // add some geometry for demonstration purposes
-        var count = 1000, cloud = new THREE.Object3D();
+        var cloud = new THREE.Object3D();
         var geometry, material = new THREE.MeshPhongMaterial({
-            color: 0x156289,
+            color: 'blue',
             emissive: 0x072534,
             side: THREE.DoubleSide,
             flatShading: THREE.FlatShading
-        }), mesh;
-        for (var i = 0; i < count; i++) {
-            geometry = new THREE.BoxGeometry(1, 1, 1);
-            mesh = new THREE.Mesh(geometry, material);
-            mesh.position.x = Math.floor(Math.random() * 100);
-            mesh.position.y = Math.floor(Math.random() * 100);
-            mesh.position.z = Math.floor(Math.random() * 100);
-            cloud.add(mesh);
-        }
-        cloud.position.set(-50, -50, -50);
+        });
+        geometry = new THREE.BoxGeometry(10, 10, 10);
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = Math.floor(0);
+        mesh.position.y = Math.floor(0);
+        mesh.position.z = Math.floor(30);
+        cloud.add(mesh);
+
+        var geometry, material = new THREE.MeshPhongMaterial({
+            color: 'green',
+            emissive: 0x072534,
+            side: THREE.DoubleSide,
+            flatShading: THREE.FlatShading
+        });
+        geometry = new THREE.BoxGeometry(10, 10, 10);
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = Math.floor(0);
+        mesh.position.y = Math.floor(30);
+        mesh.position.z = Math.floor(0);
+        cloud.add(mesh);
+
+        var geometry, material = new THREE.MeshPhongMaterial({
+            color: 'red',
+            emissive: 0x072534,
+            side: THREE.DoubleSide,
+            flatShading: THREE.FlatShading
+        });       
+        geometry = new THREE.BoxGeometry(10, 10, 10);
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = Math.floor(30);
+        mesh.position.y = Math.floor(0);
+        mesh.position.z = Math.floor(0);
+        cloud.add(mesh);        
         scene.add(cloud);
 
         var axisHelper = new THREE.AxesHelper(20);
@@ -73,6 +96,7 @@ var createTestFour = function(divElement){
         // viewport and controller
         var viewport = new FOUR.Viewport3D({
             camera: camera,
+            backgroundColor:new THREE.Color('skyblue'),
             continuousUpdate: true,
             domElement: domElement,
             scene: scene,
@@ -88,16 +112,6 @@ var createTestFour = function(divElement){
         multi.addController(zoom, 'zoom');
         viewport.addController(multi, 'multi');
         viewport.setActiveController('multi');
-        camera.addEventListener('continuous-update-end', function (e) {
-            viewport.onContinuousUpdateEnd(e);
-        });
-        camera.addEventListener('continuous-update-start', function (e) {
-            viewport.onContinuousUpdateStart(e);
-        });
-        camera.addEventListener('update', viewport.render.bind(viewport), false);
-
-        viewport.update();
-        viewport.render();
 
         // viewcube
         var viewcubeElement =  createDiv(divElement, 'viewcube');
@@ -114,20 +128,29 @@ var createTestFour = function(divElement){
                 cube: true,
                 labels: true,
                 sceneAxis: true,
+                normal:true,
+                axis:true,
             },
-            viewport: viewport
+            viewport: viewport,
         });
         viewcube.enable();
+
         viewcube.addEventListener(FOUR.EVENT.CAMERA_CHANGE, function (vals) {
-            //multi.camera.quaternion.setFromEuler(vals.direction);
-            viewport.camera.quaternion.setFromEuler(vals.direction);
-            viewport.updateOnce();
+            console.log("Main:FOUR.EVENT.CAMERA_CHANGE")
+            rotate.updateFromEuler(vals.targetEuler, vals.endQuaternation);
+            viewcube.updateOrientation(); //this also perform a render
             viewport.render();
-            viewcube.updateOrientation()
         });
-        multi.addEventListener('update', function (vals) {
+
+        multi.addEventListener(FOUR.EVENT.RENDER, function (vals) {
+            console.log("Main:FOUR.EVENT.CAMERA_CHANGE")
             viewcube.updateOrientation();
         });
+        viewcube.update();
+        viewcube.updateOrientation(); //this also perform a render
+        viewport.update();
+        viewport.render();
+        
     }
 
 var OdooCad = Class.extend({
@@ -141,29 +164,6 @@ var OdooCad = Class.extend({
         }
         //createTest(this.main_div);
         createTestFour(this.main_div[0]);
-    },
-    'addElement' : function(elementObj){
-        this._scene.add(elementObj)
-    },
-    'removeElement': function(id){
-        this._scene.remove(scene.getObjectByName(id));
-    },
-    'hideElement': function(id){
-        var objToHide = scene.getObjectByName(id);
-        objToHide.visible = False;
-    },
-    'showElement': function(id){
-        var objToHide = scene.getObjectByName(id);
-        objToHide.visible = True
-    },
-    'addToSelection': function(id){
-        this._selected.append(id)
-    },
-    'removeSelection': function(id){
-        for( var i = 0; i < this._selected.length; i++){ 
-            if ( this._selected[i] === id) {
-                this._selected.splice(i, 1); }
-            }
     },
 });
 

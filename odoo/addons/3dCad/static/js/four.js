@@ -4763,7 +4763,7 @@ FOUR.Viewcube = (function () {
 
         self.FACE_COLOUR = 0x4a5f70;
         self.FACE_OPACITY_MOUSE_OFF = 0;
-        self.FACE_OPACITY_MOUSE_NOT_OVER = 0.1;
+        self.FACE_OPACITY_MOUSE_NOT_OVER = 0.2;
         self.FACE_OPACITY_MOUSE_OVER = 0.8;
         //self.FACE_COLOUR = 0xff0000;
         //self.FACE_OPACITY_MOUSE_NOT_OVER = 1;
@@ -4802,7 +4802,7 @@ FOUR.Viewcube = (function () {
             BOTTOM_FRONT_LEFT_CORNER: 25
         };
 
-        self.LABELS_HOVER_OFF = 0.5;
+        self.LABELS_HOVER_OFF = 0.2;
         self.LABELS_HOVER = 1;
         self.MODES = {SELECT: 0, READONLY: 1};
         self.OFFSET = 1;
@@ -5051,7 +5051,7 @@ FOUR.Viewcube = (function () {
         // calculate objects intersecting the picking ray
         var intersects = self.raycaster.intersectObjects(self.cube.children, true);
         if (intersects.length > 0 && intersects[0].object.name !== 'labels') {
-            var label = self.getFaceLabel(intersects[0].object.name);
+            //var label = self.getFaceLabel(intersects[0].object.name);
             //console.info('over', label, intersects);
             intersects[0].object.material.opacity = self.FACE_OPACITY_MOUSE_OVER;
         }
@@ -5079,6 +5079,9 @@ FOUR.Viewcube = (function () {
     };
 
     Viewcube.prototype.render = function () {
+        this.materials.labels.forEach(function(obj){
+            obj.opacity=0.5;
+        });
         this.renderer.render(this.scene, this.camera);
     };
 
@@ -5523,7 +5526,8 @@ FOUR.Viewcube = (function () {
             self.render();
             self.dispatchEvent({
                 type: FOUR.EVENT.CAMERA_CHANGE,
-                direction: targetEuler,
+                targetEuler: targetEuler,
+                endQuaternation: endQuaternion,
                 });
         });
     };
@@ -6359,7 +6363,59 @@ FOUR.RotateController = (function () {
             if (lastPosition.distanceToSquared(this.camera.position) > EPS ||
                 8 * (1 - lastQuaternion.dot(this.camera.quaternion)) > EPS) {
                 lastPosition.copy(this.camera.position);
-                lastQuaternion.copy(this.camera.quaternion);
+                lastQuaternion.copy(this.camera.quaternion);                
+                return true;
+            }
+            return false;
+        };
+
+        this.fixCameraPosition = function(euler){
+            var lenght = offset.length();
+            offset.x=0;
+            offset.y=0;
+            offset.z=0;
+            var position = this.camera.position;
+            // angle from z-axis around y-axis
+            //theta = Math.atan2(euler.x, euler.z);
+            theta = Math.atan2(euler.x, euler.y);
+            // angle from y-axis
+            phi = Math.atan2(Math.sqrt(euler.x * euler.x + euler.y * euler.y), euler.z);
+            theta += thetaDelta;
+            phi += phiDelta;
+            // restrict theta to be between desired limits
+            theta = Math.max(this.minAzimuthAngle, Math.min(this.maxAzimuthAngle, theta));
+            // restrict phi to be between desired limits
+            phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, phi));
+            // restrict phi to be betwee EPS and PI-EPS
+            phi = Math.max(EPS, Math.min(Math.PI - EPS, phi));
+            var radius = lenght * scale;
+            // restrict radius to be between desired limits
+            radius = Math.max(this.minDistance, Math.min(this.maxDistance, radius));
+
+            offset.x = radius * Math.sin(phi) * Math.sin(theta);
+            offset.y = radius * Math.cos(phi);
+            offset.z = radius * Math.sin(phi) * Math.cos(theta);
+
+            // rotate offset back to "camera-up-vector-is-up" space
+            offset.applyQuaternion(quatInverse);
+            position.copy(this.camera.target).add(offset);
+            this.camera.lookAt(this.camera.target);
+            if (this.enableDamping === true) {
+                thetaDelta *= (1 - this.dampingFactor);
+                phiDelta *= (1 - this.dampingFactor);
+            } else {
+                thetaDelta = 0;
+                phiDelta = 0;
+            }
+            scale = 1;
+
+            // update condition is:
+            // min(camera displacement, camera rotation in radians)^2 > EPS
+            // using small-angle approximation cos(x/2) = 1 - x^2 / 8
+            if (lastPosition.distanceToSquared(this.camera.position) > EPS ||
+                8 * (1 - lastQuaternion.dot(this.camera.quaternion)) > EPS) {
+                lastPosition.copy(this.camera.position);
+                lastQuaternion.copy(this.camera.quaternion);                
                 return true;
             }
             return false;
@@ -6484,6 +6540,9 @@ FOUR.RotateController = (function () {
         }
     };
 
+    RotateController.prototype.updateFromEuler=function(euler, quaternion){
+        this.constraint.fixCameraPosition(euler);
+    }
     RotateController.prototype.onMouseUp = function (event) {
         if (this.state === this.STATE.ROTATE) {
             this.domElement.style.cursor = this.CURSOR.DEFAULT;
