@@ -1,0 +1,218 @@
+{
+  "path": "/home/ruben/odoo-dev11/addons_rt/threed/freecad/Scrivania.FCStd",
+  "objects": [],
+  "groups": [{
+    "name": "Assem1",
+    "label": "Assem1",
+    "objects": [{
+      "file": "Piano.stl",
+      "name": "Part__Feature013",
+      "label": "Piano|Piano",
+      "objects": [],
+      "location": [-197.016997501796, 13.5047048082542, 218.868490068205],
+      "groups": [],
+      "rotation": [0.0, 0.0, 0.0]
+    }],
+    "location": [0.0, 0.0, 0.0],
+    "groups": [{
+      "name": "Struttura",
+      "label": "Struttura|Struttura",
+      "objects": [],
+      "location": [700.0, 49.999999999998, 0.0],
+      "groups": [{
+        "name": "Gamba001",
+        "label": "Gamba001|Gamba",
+        "objects": [{
+          "file": "Telaio.stl",
+          "name": "Part__Feature014",
+          "label": "Telaio001|Telaio",
+          "objects": [],
+          "location": [865.0, -600.0, -39.0],
+          "groups": [],
+          "rotation": [0.0, 0.0, 180.0]
+        }],
+        "location": [-697.016997501797, 13.504704808255, 218.868490068205],
+        "groups": [{
+          "name": "Puntale003",
+          "label": "Puntale003|Puntale",
+          "objects": [{
+            "file": "Puntale_c1.stl",
+            "name": "Part__Feature015",
+            "label": "Puntale_c1007|Puntale_c1",
+            "objects": [],
+            "location": [0.0, 0.0, 0.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }, {
+            "file": "Puntale_c2.stl",
+            "name": "Part__Feature016",
+            "label": "Puntale_c2008|Puntale_c2",
+            "objects": [],
+            "location": [0.0, -0.0, -4.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }],
+          "location": [865.0, 385.0, -729.5],
+          "groups": [],
+          "rotation": [0.0, 0.0, 180.0]
+        }, {
+          "name": "Puntale004",
+          "label": "Puntale004|Puntale",
+          "objects": [{
+            "file": "Puntale_c1.stl",
+            "name": "Part__Feature017",
+            "label": "Puntale_c1009|Puntale_c1",
+            "objects": [],
+            "location": [0.0, 0.0, 0.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }, {
+            "file": "Puntale_c2.stl",
+            "name": "Part__Feature018",
+            "label": "Puntale_c2010|Puntale_c2",
+            "objects": [],
+            "location": [0.0, -0.0, -4.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }],
+          "location": [865.0, -485.0, -729.5],
+          "groups": [],
+          "rotation": [0.0, 0.0, 0.0]
+        }],
+        "rotation": [0.0, 0.0, 0.0]
+      }, {
+        "name": "Gamba002",
+        "label": "Gamba002|Gamba",
+        "objects": [{
+          "file": "Telaio.stl",
+          "name": "Part__Feature019",
+          "label": "Telaio002|Telaio",
+          "objects": [],
+          "location": [865.0, -600.0, -39.0],
+          "groups": [],
+          "rotation": [0.0, 0.0, 180.0]
+        }],
+        "location": [-1097.01699750179, -86.49529519175, 218.868490068205],
+        "groups": [{
+          "name": "Puntale005",
+          "label": "Puntale005|Puntale",
+          "objects": [{
+            "file": "Puntale_c1.stl",
+            "name": "Part__Feature020",
+            "label": "Puntale_c1011|Puntale_c1",
+            "objects": [],
+            "location": [0.0, 0.0, 0.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }, {
+            "file": "Puntale_c2.stl",
+            "name": "Part__Feature021",
+            "label": "Puntale_c2012|Puntale_c2",
+            "objects": [],
+            "location": [0.0, -0.0, -4.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }],
+          "location": [865.0, 385.0, -729.5],
+          "groups": [],
+          "rotation": [-0.0, 0.0, -179.99999999998818]
+        }, {
+          "name": "Puntale006",
+          "label": "Puntale006|Puntale",
+          "objects": [{
+            "file": "Puntale_c1.stl",
+            "name": "Part__Feature022",
+            "label": "Puntale_c1013|Puntale_c1",
+            "objects": [],
+            "location": [0.0, 0.0, 0.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }, {
+            "file": "Puntale_c2.stl",
+            "name": "Part__Feature023",
+            "label": "Puntale_c2014|Puntale_c2",
+            "objects": [],
+            "location": [0.0, -0.0, -4.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 0.0]
+          }],
+          "location": [865.0, -485.0, -729.5],
+          "groups": [],
+          "rotation": [0.0, 0.0, 0.0]
+        }],
+        "rotation": [-0.0, 0.0, -179.99999999998818]
+      }, {
+        "name": "CoppiaTravi001",
+        "label": "CoppiaTravi001|CoppiaTrav",
+        "objects": [],
+        "location": [-997.016997501796, 568.504704808253, 218.868490068205],
+        "groups": [{
+          "name": "Trave002",
+          "label": "Trave002|Trave",
+          "objects": [{
+            "file": "Tappo.stl",
+            "name": "Part__Feature024",
+            "label": "Tappo004|Tappo",
+            "objects": [],
+            "location": [-967.0, -277.5, -24.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, -89.99999999999999]
+          }, {
+            "file": "Tappo.stl",
+            "name": "Part__Feature025",
+            "label": "Tappo005|Tappo",
+            "objects": [],
+            "location": [1167.0, -277.5, -24.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 89.99999999999999]
+          }, {
+            "file": "ScoccaTrave.stl",
+            "name": "Part__Feature026",
+            "label": "ScoccaTrave002|ScoccaTrave",
+            "objects": [],
+            "location": [100.0, -277.5, -9.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, -89.99999999999999]
+          }],
+          "location": [0.0, 0.0, 0.0],
+          "groups": [],
+          "rotation": [0.0, 0.0, 0.0]
+        }, {
+          "name": "Trave003",
+          "label": "Trave003|Trave",
+          "objects": [{
+            "file": "Tappo.stl",
+            "name": "Part__Feature027",
+            "label": "Tappo006|Tappo",
+            "objects": [],
+            "location": [-967.0, -277.5, -24.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, -89.99999999999999]
+          }, {
+            "file": "Tappo.stl",
+            "name": "Part__Feature028",
+            "label": "Tappo007|Tappo",
+            "objects": [],
+            "location": [1167.0, -277.5, -24.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, 89.99999999999999]
+          }, {
+            "file": "ScoccaTrave.stl",
+            "name": "Part__Feature029",
+            "label": "ScoccaTrave003|ScoccaTrave",
+            "objects": [],
+            "location": [100.0, -277.5, -9.0],
+            "groups": [],
+            "rotation": [0.0, 0.0, -89.99999999999999]
+          }],
+          "location": [0.0, -655.0, 0.0],
+          "groups": [],
+          "rotation": [0.0, 0.0, 0.0]
+        }],
+        "rotation": [0.0, 0.0, 0.0]
+      }],
+      "rotation": [0.0, 0.0, 0.0]
+    }],
+    "rotation": [0.0, 0.0, 0.0]
+  }]
+}
