@@ -40,18 +40,18 @@ THREE.STLLoader.prototype = {
 
 	constructor: THREE.STLLoader,
 
-	load: function ( url, onLoad, onProgress, onError ) {
+	load: function ( url, data, onLoad, onProgress, onError ) {
 
-		var scope = this;
+        var scope = this;
+        scope.url = url;
+        scope.data = data;
 
 		var loader = new THREE.FileLoader( scope.manager );
 		loader.setPath( scope.path );
 		loader.setResponseType( 'arraybuffer' );
 		loader.load( url, function ( text ) {
-
 			try {
-
-				onLoad( scope.parse( text ) );
+				onLoad( scope.parse( text, scope.data) );
 
 			} catch ( exception ) {
 
@@ -74,7 +74,7 @@ THREE.STLLoader.prototype = {
 
 	},
 
-	parse: function ( data ) {
+	parse: function ( data, creationData ) {
 
 		function isBinary( data ) {
 
@@ -217,7 +217,8 @@ THREE.STLLoader.prototype = {
 			}
 
 			geometry.addAttribute( 'position', new THREE.BufferAttribute( new Float32Array( vertices ), 3 ) );
-			geometry.addAttribute( 'normal', new THREE.BufferAttribute( new Float32Array( normals ), 3 ) );
+            geometry.addAttribute( 'normal', new THREE.BufferAttribute( new Float32Array( normals ), 3 ) );
+            
 
 			if ( hasColors ) {
 
@@ -226,7 +227,6 @@ THREE.STLLoader.prototype = {
 				geometry.alpha = alpha;
 
 			}
-
 			return geometry;
 
 		}
@@ -294,7 +294,6 @@ THREE.STLLoader.prototype = {
 
 			geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
 			geometry.addAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ) );
-
 			return geometry;
 
 		}
@@ -334,8 +333,9 @@ THREE.STLLoader.prototype = {
 		// start
 
 		var binData = ensureBinary( data );
-
-		return isBinary( binData ) ? parseBinary( binData ) : parseASCII( ensureString( data ) );
+        var geometry = isBinary( binData ) ? parseBinary( binData ) : parseASCII( ensureString( data ) );
+        geometry.creationData = creationData;
+        return geometry;
 
 	}
 
